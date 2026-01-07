@@ -143,7 +143,7 @@ This message was sent from your website contact form.`;
     const result = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
-      replyTo: options.email,
+      reply_to: options.email,
       subject: `New Contact Form Submission from ${options.name}`,
       html: notificationEmailHtml,
       text: notificationEmailText,
