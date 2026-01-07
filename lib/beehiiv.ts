@@ -37,6 +37,13 @@ export async function subscribeToNewsletter(
     // Beehiiv API v2 endpoint for subscribing to a publication
     const apiUrl = `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`;
 
+    console.log("Beehiiv API call:", {
+      url: apiUrl,
+      email: email,
+      publicationId: publicationId,
+      hasApiKey: !!apiKey,
+    });
+
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -49,26 +56,40 @@ export async function subscribeToNewsletter(
       }),
     });
 
-    const responseData = await response.json().catch(() => ({}));
+    const responseData = await response.json().catch(async (err) => {
+      const text = await response.text().catch(() => "Could not read response");
+      console.error("Failed to parse JSON response:", text);
+      return { rawResponse: text };
+    });
+
+    console.log("Beehiiv API response:", {
+      status: response.status,
+      statusText: response.statusText,
+      ok: response.ok,
+      data: responseData,
+    });
 
     if (!response.ok) {
       // Handle API errors
       const errorMessage =
         responseData?.errors?.[0]?.message ||
         responseData?.message ||
+        responseData?.error ||
         `Beehiiv API error: ${response.status} ${response.statusText}`;
 
       console.error("Beehiiv API error:", {
         status: response.status,
         statusText: response.statusText,
         error: errorMessage,
-        response: responseData,
+        fullResponse: responseData,
+        url: apiUrl,
       });
 
       throw new Error(errorMessage);
     }
 
     // Success response
+    console.log("Beehiiv subscription successful:", responseData);
     return {
       success: true,
       message: "Successfully subscribed to newsletter",

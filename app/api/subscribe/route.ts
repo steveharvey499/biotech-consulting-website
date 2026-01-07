@@ -26,7 +26,9 @@ export async function POST(request: NextRequest) {
 
     // Subscribe to Beehiiv newsletter
     try {
-      await subscribeToNewsletter(email, true);
+      console.log("Attempting to subscribe email to Beehiiv:", email);
+      const result = await subscribeToNewsletter(email, true);
+      console.log("Subscription result:", result);
     } catch (subscriptionError) {
       console.error("Error subscribing to Beehiiv newsletter:", subscriptionError);
       
@@ -37,9 +39,15 @@ export async function POST(request: NextRequest) {
       
       // Check if it's a duplicate subscription error (non-fatal)
       if (errorMessage.toLowerCase().includes("already subscribed") || 
-          errorMessage.toLowerCase().includes("already exists")) {
-        console.info("Email already subscribed, continuing with welcome email");
+          errorMessage.toLowerCase().includes("already exists") ||
+          errorMessage.toLowerCase().includes("duplicate")) {
+        console.info("Email already subscribed or duplicate, continuing with welcome email");
       } else {
+        // Log full error for debugging
+        console.error("Subscription failed with error:", {
+          message: errorMessage,
+          error: subscriptionError,
+        });
         // For other errors, return error response
         return NextResponse.json(
           { error: errorMessage },
