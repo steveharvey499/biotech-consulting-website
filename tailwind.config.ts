@@ -89,7 +89,7 @@ const config: Config = {
         // Button Text
         "button": ["1rem", { lineHeight: "1.5", fontWeight: "600" }],
         // Labels/Metadata
-        "label": ["0.75rem", { lineHeight: "1.5", fontWeight: "600", letterSpacing: "0.1em", textTransform: "uppercase" }],
+        "label": ["0.75rem", { lineHeight: "1.5", fontWeight: "600", letterSpacing: "0.1em" }],
       },
     },
   },
