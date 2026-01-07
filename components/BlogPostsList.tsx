@@ -46,7 +46,7 @@ const BlogPostsList = ({ posts }: BlogPostsListProps) => {
           Coming Soon
         </h2>
         <p className="text-body text-text-body max-w-md mx-auto">
-          I'm currently working on my first articles. Check back soon for
+          I&apos;m currently working on my first articles. Check back soon for
           insights on biotech leadership, scaling strategies, and building
           successful companies.
         </p>

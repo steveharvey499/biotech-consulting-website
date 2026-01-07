@@ -48,7 +48,7 @@ const Services = () => {
             Services
           </h2>
           <p className="text-intro text-text-body max-w-2xl mx-auto">
-            Comprehensive consulting services tailored to your biotech company's
+            Comprehensive consulting services tailored to your biotech company&apos;s
             unique challenges and growth stage.
           </p>
         </div>
@@ -65,7 +65,7 @@ const Services = () => {
               <p className="text-body text-text-body mb-6 flex-grow">{service.description}</p>
 
               <div className="mb-6">
-                <h4 className="font-semibold text-adenine mb-2">Who it's for:</h4>
+                <h4 className="font-semibold text-adenine mb-2">Who it&apos;s for:</h4>
                 <p className="text-small text-text-secondary">{service.whoItsFor}</p>
               </div>
 

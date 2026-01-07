@@ -80,7 +80,7 @@ const Pricing = () => {
             </h1>
             <p className="text-lg text-navy-700">
               Flexible pricing options designed to meet your specific needs and
-              support your biotech company's growth journey.
+              support your biotech company&apos;s growth journey.
             </p>
           </div>
         </div>

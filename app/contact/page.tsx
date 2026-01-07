@@ -24,7 +24,7 @@ const Contact = () => {
       <section className="bg-gradient-to-b from-white to-navy-50 py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-900 mb-6">Let's Talk About Your Biotech</h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-900 mb-6">Let&apos;s Talk About Your Biotech</h1>
             <p className="text-lg text-navy-700">
               Book a call or send me a message.
             </p>

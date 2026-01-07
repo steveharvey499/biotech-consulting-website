@@ -22,7 +22,7 @@ const PhotoQuote = () => {
             {/* Text Box - Overlapping on Right */}
             <div className="relative -mt-32 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-0 lg:mt-0 w-full lg:w-[650px] bg-cytosine/10 rounded-lg p-8 lg:p-10 shadow-xl z-10 border border-cytosine/20">
               <p className="font-display text-body lg:text-intro text-adenine leading-relaxed">
-                I spent 10 years as a biotech CEO, taking an idea from the bench to a multi-million dollar revenue stream. And with almost no budget, I built a brand that generated 10M+ impressions. Technical challenges. Commercial pivots. Fundraising pressure. Team building. I've lived it all. Now I help founders, CEOs and boards navigate that same journey, but hopefully with fewer scars.
+                I spent 10 years as a biotech CEO, taking an idea from the bench to a multi-million dollar revenue stream. And with almost no budget, I built a brand that generated 10M+ impressions. Technical challenges. Commercial pivots. Fundraising pressure. Team building. I&apos;ve lived it all. Now I help founders, CEOs and boards navigate that same journey, but hopefully with fewer scars.
               </p>
             </div>
           </div>

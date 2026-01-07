@@ -20,12 +20,13 @@ const HubSpotMeetingWidget = () => {
     iframe.setAttribute("frameborder", "0");
     iframe.setAttribute("allow", "camera; microphone");
 
-    containerRef.current.appendChild(iframe);
+    const container = containerRef.current;
+    container.appendChild(iframe);
 
     return () => {
       // Cleanup: remove iframe on unmount
-      if (containerRef.current && containerRef.current.contains(iframe)) {
-        containerRef.current.removeChild(iframe);
+      if (container && container.contains(iframe)) {
+        container.removeChild(iframe);
       }
     };
   }, [meetingUrl]);

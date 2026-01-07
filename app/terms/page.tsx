@@ -30,8 +30,8 @@ const TermsOfService = () => {
               1. Agreement to Terms
             </h2>
             <p className="text-navy-700">
-              By engaging The Synthesis ("Consultant", "we", "us", "our") for consulting
-              services, you ("Client", "you") agree to be bound by these Terms of
+              By engaging The Synthesis (&quot;Consultant&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;) for consulting
+              services, you (&quot;Client&quot;, &quot;you&quot;) agree to be bound by these Terms of
               Service. If you do not agree to these terms, please do not engage
               our services.
             </p>
@@ -67,7 +67,7 @@ const TermsOfService = () => {
             <p className="text-navy-700">
               The Synthesis is an independent contractor, not an employee, partner, or agent
               of the Client. Consulting services are provided independently and
-              are separate from any individual's role at Camena Bioscience.
+              are separate from any individual&apos;s role at Camena Bioscience.
             </p>
           </section>
 
@@ -87,7 +87,7 @@ const TermsOfService = () => {
               6. Limitation of Liability
             </h2>
             <p className="text-navy-700">
-              The Synthesis's liability for any claims arising from the consulting services is
+              The Synthesis&apos;s liability for any claims arising from the consulting services is
               limited to the fees paid by the Client for the specific engagement.
               We are not liable for indirect, incidental, or consequential damages.
             </p>
@@ -98,7 +98,7 @@ const TermsOfService = () => {
               7. Intellectual Property
             </h2>
             <p className="text-navy-700">
-              Any materials, frameworks, or methodologies we provide remain The Synthesis's
+              Any materials, frameworks, or methodologies we provide remain The Synthesis&apos;s
               intellectual property. The Client may use these materials for their
               business purposes but may not resell or redistribute them.
             </p>

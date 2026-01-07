@@ -15,10 +15,10 @@ const AboutPreview = () => {
 
           <div className="prose prose-lg max-w-none mb-8">
             <p className="text-body text-text-body mb-4">
-              I started a biotech company because the technology I needed didn't exist yet.
+              I started a biotech company because the technology I needed didn&apos;t exist yet.
             </p>
             <p className="text-body text-text-body mb-4">
-              I'd witnessed two technology revolutions at the bench: next-generation sequencing transformed our ability to read DNA, and CRISPR revolutionised genome editing overnight.
+              I&apos;d witnessed two technology revolutions at the bench: next-generation sequencing transformed our ability to read DNA, and CRISPR revolutionised genome editing overnight.
             </p>
             <p className="text-body text-text-body mb-4">
               But those leaps exposed a critical gap. DNA synthesis technology was error-prone, slow, and many genes remained inaccessible.
@@ -30,16 +30,16 @@ const AboutPreview = () => {
               I ran with that idea and converted it into a multi-million dollar revenue. I secured partnerships with major pharmaceutical companies, led multiple funding rounds, and built a high-performance team.
             </p>
             <p className="text-body text-text-body mb-4">
-              But I also know what it's like to navigate the uncertainty. The technical dead-ends. The fundraising pressure. The strategic pivots that keep you up at night. I've faced the same questions founders and CEOs face today.
+              But I also know what it&apos;s like to navigate the uncertainty. The technical dead-ends. The fundraising pressure. The strategic pivots that keep you up at night. I&apos;ve faced the same questions founders and CEOs face today.
             </p>
             <p className="text-body text-text-body mb-4">
-              And that's why I started The Synthesis.
+              And that&apos;s why I started The Synthesis.
             </p>
             <p className="text-body text-text-body mb-4">
-              Too many biotech founders are navigating this journey alone, making expensive mistakes I've already made. The Synthesis is my advisory practice. I work directly with founders, CEOs, and boards to accelerate the path from bench to revenue.
+              Too many biotech founders are navigating this journey alone, making expensive mistakes I&apos;ve already made. The Synthesis is my advisory practice. I work directly with founders, CEOs, and boards to accelerate the path from bench to revenue.
             </p>
             <p className="text-body text-text-body">
-              No consultant speak. No 100-page decks. Just practical guidance from someone who's actually built a biotech company and knows both the technical and commercial realities.
+              No consultant speak. No 100-page decks. Just practical guidance from someone who&apos;s actually built a biotech company and knows both the technical and commercial realities.
             </p>
           </div>
 

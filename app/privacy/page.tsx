@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
               1. Introduction
             </h2>
             <p className="text-navy-700">
-              This Privacy Policy explains how The Synthesis ("we", "us", "our", "The Synthesis")
+              This Privacy Policy explains how The Synthesis (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;, &quot;The Synthesis&quot;)
               collects, uses, and protects your personal information when you
               visit this website or use our consulting services. The Synthesis is committed
               to protecting your privacy and ensuring compliance with the General
@@ -179,7 +179,7 @@ const PrivacyPolicy = () => {
               </li>
               <li>
                 <strong>Right to Erasure:</strong> Request deletion of your data
-                ("right to be forgotten")
+                (&quot;right to be forgotten&quot;)
               </li>
               <li>
                 <strong>Right to Restrict Processing:</strong> Request
@@ -245,7 +245,7 @@ const PrivacyPolicy = () => {
 
           <section>
             <h2 className="text-2xl font-bold text-navy-900 mt-8 mb-4">
-              11. Children's Privacy
+              11. Children&apos;s Privacy
             </h2>
             <p className="text-navy-700">
               This website is not intended for individuals under 18 years of age.
@@ -259,7 +259,7 @@ const PrivacyPolicy = () => {
             </h2>
             <p className="text-navy-700">
               We may update this Privacy Policy from time to time. The updated
-              version will be posted on this page with a revised "Last updated"
+              version will be posted on this page with a revised &quot;Last updated&quot;
               date.
             </p>
           </section>

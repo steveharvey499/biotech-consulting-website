@@ -166,7 +166,7 @@ const Pricing = () => {
             </h3>
             <p className="text-body text-text-body mb-6">
               For board advisory, fractional executive roles, or project-based work,
-              let's discuss tailored arrangements.
+              let&apos;s discuss tailored arrangements.
             </p>
             <CTAButton href="/contact" variant="secondary">
               Contact Me
