@@ -208,6 +208,20 @@ export async function updateContactProperties(
       return false;
     }
     
+    // Check if error is due to invalid date format
+    const hasDateError = 
+      error?.body?.errors?.some?.((e: any) => e.code === 'INVALID_DATE') ||
+      error?.body?.message?.includes?.('INVALID_DATE') ||
+      error?.body?.message?.includes?.('not midnight') ||
+      error?.message?.includes?.('INVALID_DATE') ||
+      error?.message?.includes?.('not midnight');
+
+    if (hasDateError) {
+      console.warn("Date format error in HubSpot property update. This is a non-fatal error.");
+      console.warn("The contact was created successfully, but the date property could not be set.");
+      return false;
+    }
+    
     // Log other errors but don't throw
     console.warn("Error updating HubSpot contact properties (non-fatal):", error?.message || String(error));
     return false;

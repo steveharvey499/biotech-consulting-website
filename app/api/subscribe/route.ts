@@ -60,9 +60,19 @@ export async function POST(request: NextRequest) {
     const enableProperties = process.env.ENABLE_SUBSCRIPTION_PROPERTIES === "true";
     if (enableProperties) {
       try {
+        // HubSpot date picker requires timestamp in milliseconds at midnight UTC
+        const now = new Date();
+        const midnightUTC = new Date(Date.UTC(
+          now.getUTCFullYear(),
+          now.getUTCMonth(),
+          now.getUTCDate(),
+          0, 0, 0, 0
+        ));
+        const timestampAtMidnight = midnightUTC.getTime().toString();
+        
         const propertiesUpdated = await updateContactProperties(contactId, {
           subscription_source: "website",
-          subscription_date: new Date().toISOString().split("T")[0], // Format as YYYY-MM-DD for date picker
+          subscription_date: timestampAtMidnight, // Timestamp at midnight UTC for date picker
         });
         
         if (!propertiesUpdated) {
