@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Adobe Fonts - The Synthesis Brand Typography */
+/* To use brand fonts, replace the @import below with your Adobe Fonts kit URL */
+/* Get your kit from: https://fonts.adobe.com */
+/* @import url("https://use.typekit.net/xxxxx.css"); */
+
+/* CSS Variables for Brand Fonts */
+:root {
+  /* Fallback to Inter until Adobe Fonts are configured */
+  --font-freight-display: 'freight-display-pro', Georgia, serif;
+  --font-acumin: 'acumin-pro', var(--font-inter), system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bg-primary text-text-body antialiased;
+    font-family: var(--font-acumin), var(--font-inter), system-ui, sans-serif;
+  }
+
+  /* Headings - Freight Display Pro */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-freight-display), serif;
+    font-weight: 400; /* Book weight */
+    letter-spacing: -0.02em; /* -2% tracking */
+    color: theme('colors.adenine.DEFAULT');
+  }
+
+  h1 {
+    @apply text-hero;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-section;
+    line-height: 1.2;
+  }
+
+  h3 {
+    @apply text-subsection;
+    line-height: 1.2;
+  }
+
+  /* Body text - Acumin Pro */
+  p {
+    @apply text-body;
+    color: theme('colors.text.body');
+    line-height: 1.6;
+  }
+
+  /* Links */
+  a {
+    color: theme('colors.thymine.DEFAULT');
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: theme('colors.thymine.light');
+  }
+
+  /* Labels and metadata */
+  .label, label {
+    @apply text-label;
+    color: theme('colors.text.tertiary');
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Brand-specific utility classes */
+  .text-adenine {
+    color: theme('colors.adenine.DEFAULT');
+  }
+
+  .text-thymine {
+    color: theme('colors.thymine.DEFAULT');
+  }
+
+  .text-guanine {
+    color: theme('colors.guanine.DEFAULT');
+  }
+
+  .text-cytosine {
+    color: theme('colors.cytosine.DEFAULT');
+  }
+
+  .bg-adenine {
+    background-color: theme('colors.adenine.DEFAULT');
+  }
+
+  .bg-thymine {
+    background-color: theme('colors.thymine.DEFAULT');
+  }
+
+  .bg-cytosine {
+    background-color: theme('colors.cytosine.DEFAULT');
+  }
+}
