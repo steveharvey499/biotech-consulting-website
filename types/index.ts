@@ -15,7 +15,8 @@ export interface ClientType {
 export interface Service {
   title: string;
   description: string;
-  bestFor: string[];
+  whoItsFor: string;
+  deliverables: string[];
 }
 
 export interface SubscriptionData {
