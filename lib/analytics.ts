@@ -54,9 +54,20 @@ export const event = ({
 };
 
 // Track conversions
-export const trackConversion = (conversionType: "calendly" | "contact_form") => {
+export const trackConversion = (
+  conversionType: "calendly" | "contact_form" | "newsletter_subscription"
+) => {
+  let action: string;
+  if (conversionType === "calendly") {
+    action = "calendly_booking";
+  } else if (conversionType === "contact_form") {
+    action = "contact_form_submission";
+  } else {
+    action = "newsletter_subscription";
+  }
+
   event({
-    action: conversionType === "calendly" ? "calendly_booking" : "contact_form_submission",
+    action,
     category: "conversion",
     label: conversionType,
   });
