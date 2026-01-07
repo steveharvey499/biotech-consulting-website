@@ -6,7 +6,8 @@ const services: Service[] = [
     title: "Technical & Strategic Advisory",
     description:
       "Navigate your most complex technical and commercial decisions. From synthetic biology strategy to pharmaceutical partnership negotiations, get expert guidance from someone who's built and scaled a biotech company from the ground up.",
-    bestFor: [
+    whoItsFor: "Founders and executives facing critical decisions",
+    deliverables: [
       "Critical decision points",
       "Partnership negotiations",
       "Competitive positioning",
@@ -17,7 +18,8 @@ const services: Service[] = [
     title: "Revenue Growth Roadmap",
     description:
       "Build a systematic approach to generating and scaling revenue in life sciences. Customer identification, pricing strategy, partnership models, and go-to-market frameworks specific to biotech. I'll help you navigate the journey from zero to £10M with proven methodologies.",
-    bestFor: [
+    whoItsFor: "Pre-revenue to £10M scaling companies",
+    deliverables: [
       "Pre-revenue to £10M scaling",
       "Business model development",
       "First customer acquisition",
@@ -28,7 +30,8 @@ const services: Service[] = [
     title: "CEO Coaching & Leadership Development",
     description:
       "Develop the leadership skills to match your company's growth trajectory. Managing technical teams, board dynamics, fundraising conversations, organizational structure, and personal resilience. Build the capabilities you need to lead effectively at every stage.",
-    bestFor: [
+    whoItsFor: "First-time founders and technical founders transitioning to CEO",
+    deliverables: [
       "First-time founders",
       "Technical founders transitioning to CEO",
       "Leadership development",
@@ -62,9 +65,11 @@ const HowIHelp = () => {
                   {service.description}
                 </p>
                 <div>
-                  <h4 className="font-semibold text-adenine mb-3">Best for:</h4>
+                  <h4 className="font-semibold text-adenine mb-2">Best for:</h4>
+                  <p className="text-small text-text-secondary mb-3">{service.whoItsFor}</p>
+                  <h4 className="font-semibold text-adenine mb-3">Key areas:</h4>
                   <ul className="space-y-2">
-                    {service.bestFor.map((item, idx) => (
+                    {service.deliverables.map((item, idx) => (
                       <li key={idx} className="flex items-start text-small text-text-body">
                         <svg
                           className="w-5 h-5 text-thymine mr-2 flex-shrink-0 mt-0.5"
