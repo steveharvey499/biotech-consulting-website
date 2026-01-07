@@ -112,14 +112,31 @@ export async function addContactToList(
       throw new Error(`Invalid list ID: ${listId}`);
     }
 
-    // Use the lists API to add contacts to a list
-    // Method: addContactsToList on listsApi
-    // Using type assertion as the method exists but may not be in TypeScript definitions
-    const listsApi = hubspotClient.crm.lists.listsApi as any;
-    await listsApi.addContactsToList(numericListId, {
-      emails: [],
-      ids: [contactId],
-    });
+    // Use direct HTTP call to HubSpot API to add contact to list
+    // The HubSpot API client doesn't have a reliable method for this, so we'll use fetch
+    const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
+    const response = await fetch(
+      `https://api.hubapi.com/crm/v3/lists/${numericListId}/members/add`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          inputs: [
+            {
+              id: contactId,
+            },
+          ],
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HubSpot API error: ${response.status} ${response.statusText} - ${errorText}`);
+    }
   } catch (error) {
     console.error("Error adding contact to HubSpot list:", error);
     // Log more details for debugging
