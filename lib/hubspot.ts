@@ -101,14 +101,34 @@ export async function addContactToList(
       throw new Error("HUBSPOT_ACCESS_TOKEN is not configured");
     }
 
+    if (!listId) {
+      throw new Error("List ID is required");
+    }
+
+    // Convert listId to number if it's a string
+    const numericListId = typeof listId === "string" ? parseInt(listId, 10) : listId;
+    
+    if (isNaN(numericListId)) {
+      throw new Error(`Invalid list ID: ${listId}`);
+    }
+
     // Use the lists API to add contacts
-    await (hubspotClient.crm.lists.listsApi as any).addContactsToList(listId, {
+    // The API method signature: addContactsToList(listId, body)
+    await hubspotClient.crm.lists.listsApi.addContactsToList(numericListId, {
       emails: [],
       ids: [contactId],
     });
   } catch (error) {
     console.error("Error adding contact to HubSpot list:", error);
-    throw error;
+    // Log more details for debugging
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      if (error.stack) {
+        console.error("Error stack:", error.stack);
+      }
+    }
+    // Re-throw with more context
+    throw new Error(`Failed to add contact to list: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
@@ -149,22 +169,48 @@ export async function createContactNote(data: ContactNoteData): Promise<void> {
 
 /**
  * Update contact properties (for subscription tracking, etc.)
+ * Returns true if successful, false if properties don't exist or update fails
+ * NEVER throws - always returns false on error
  */
 export async function updateContactProperties(
   contactId: string,
   properties: Record<string, string>
-): Promise<void> {
+): Promise<boolean> {
   try {
     if (!process.env.HUBSPOT_ACCESS_TOKEN) {
-      throw new Error("HUBSPOT_ACCESS_TOKEN is not configured");
+      console.warn("HUBSPOT_ACCESS_TOKEN is not configured");
+      return false;
+    }
+
+    if (!contactId) {
+      console.warn("Contact ID is required for property update");
+      return false;
     }
 
     await hubspotClient.crm.contacts.basicApi.update(contactId, {
       properties,
     });
-  } catch (error) {
-    console.error("Error updating HubSpot contact properties:", error);
-    throw error;
+    return true;
+  } catch (error: any) {
+    // Check if error is due to properties not existing
+    const hasPropertyError = 
+      error?.body?.errors?.some?.((e: any) => e.code === 'PROPERTY_DOESNT_EXIST') ||
+      error?.body?.message?.includes?.('Property') ||
+      error?.body?.message?.includes?.('does not exist') ||
+      error?.message?.includes?.('Property') ||
+      error?.message?.includes?.('does not exist');
+
+    if (hasPropertyError) {
+      console.warn("Custom properties don't exist in HubSpot. Skipping property update.");
+      console.warn("To enable property tracking, create these properties in HubSpot:");
+      console.warn("  - subscription_source (Single-line text)");
+      console.warn("  - subscription_date (Date picker)");
+      return false;
+    }
+    
+    // Log other errors but don't throw
+    console.warn("Error updating HubSpot contact properties (non-fatal):", error?.message || String(error));
+    return false;
   }
 }
 
