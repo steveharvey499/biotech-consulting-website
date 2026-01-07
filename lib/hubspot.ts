@@ -112,9 +112,11 @@ export async function addContactToList(
       throw new Error(`Invalid list ID: ${listId}`);
     }
 
-    // Use the lists API to add contacts
-    // The API method signature: addContactsToList(listId, body)
-    await hubspotClient.crm.lists.listsApi.addContactsToList(numericListId, {
+    // Use the lists API to add contacts to a list
+    // Method: addContactsToList on listsApi
+    // Using type assertion as the method exists but may not be in TypeScript definitions
+    const listsApi = hubspotClient.crm.lists.listsApi as any;
+    await listsApi.addContactsToList(numericListId, {
       emails: [],
       ids: [contactId],
     });
