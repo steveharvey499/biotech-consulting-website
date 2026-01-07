@@ -29,10 +29,12 @@ const SubscriptionForm = () => {
       return; // Silent fail for bots
     }
 
+    console.log("Submitting subscription form with email:", data.email);
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
     try {
+      console.log("Making subscription request to /api/subscribe");
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: {
@@ -43,10 +45,27 @@ const SubscriptionForm = () => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to subscribe");
+      console.log("Response status:", response.status, response.statusText);
+
+      // Try to parse response as JSON first
+      let responseData;
+      try {
+        responseData = await response.json();
+        console.log("Response data:", responseData);
+      } catch (parseError) {
+        console.error("Failed to parse response as JSON:", parseError);
+        throw new Error(`Server error: ${response.status} ${response.statusText}`);
       }
 
+      if (!response.ok) {
+        // Extract error message from response
+        const errorMessage = responseData?.error || responseData?.message || `Server error: ${response.status}`;
+        console.error("Subscription failed:", errorMessage);
+        throw new Error(errorMessage);
+      }
+
+      // Success
+      console.log("Subscription successful:", responseData);
       setSubmitStatus("success");
       setSubmitMessage(
         "Thank you for subscribing! You'll receive the latest insights and articles directly to your inbox."
@@ -54,9 +73,22 @@ const SubscriptionForm = () => {
       trackConversion("newsletter_subscription");
       reset();
     } catch (error) {
+      console.error("Subscription error details:", error);
       setSubmitStatus("error");
+      
+      // Extract meaningful error message
+      let errorMessage = "Unknown error occurred";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === "string") {
+        errorMessage = error;
+      } else if (error && typeof error === "object" && "message" in error) {
+        errorMessage = String(error.message);
+      }
+      
+      // Show user-friendly message with details
       setSubmitMessage(
-        "Sorry, there was an error subscribing. Please try again."
+        `Sorry, there was an error subscribing: ${errorMessage}. Please try again or contact support if the problem persists.`
       );
     } finally {
       setIsSubmitting(false);

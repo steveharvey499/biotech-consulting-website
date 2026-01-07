@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  createOrUpdateContact,
-  addContactToList,
-  updateContactProperties,
-} from "@/lib/hubspot";
+import { subscribeToNewsletter } from "@/lib/beehiiv";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,64 +24,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create or update contact in HubSpot
-    let contactId: string;
+    // Subscribe to Beehiiv newsletter
     try {
-      const result = await createOrUpdateContact({
-        email,
+      await subscribeToNewsletter(email, true);
+    } catch (subscriptionError) {
+      console.error("Error subscribing to Beehiiv newsletter:", subscriptionError);
+      
+      // Provide user-friendly error message
+      const errorMessage = subscriptionError instanceof Error 
+        ? subscriptionError.message 
+        : "Failed to subscribe to newsletter";
+      
+      // Check if it's a duplicate subscription error (non-fatal)
+      if (errorMessage.toLowerCase().includes("already subscribed") || 
+          errorMessage.toLowerCase().includes("already exists")) {
+        console.info("Email already subscribed, continuing with welcome email");
+      } else {
+        // For other errors, return error response
+        return NextResponse.json(
+          { error: errorMessage },
+          { status: 500 }
+        );
+      }
+    }
+
+    // Send welcome email via Resend
+    // This is non-blocking - subscription succeeds even if email fails
+    try {
+      await sendWelcomeEmail({
+        to: email,
       });
-      contactId = result.contactId;
-    } catch (contactError) {
-      console.error("Error creating/updating contact:", contactError);
-      throw new Error("Failed to create contact in HubSpot");
-    }
-
-    // Add contact to newsletter list if list ID is configured
-    const newsletterListId = process.env.HUBSPOT_NEWSLETTER_LIST_ID;
-    if (newsletterListId) {
-      try {
-        await addContactToList(contactId, newsletterListId);
-      } catch (listError) {
-        // Log error but don't fail the subscription if list addition fails
-        console.error("Error adding contact to newsletter list:", listError);
-        console.warn("Contact was created but not added to list. List ID:", newsletterListId);
-        // Continue - contact was created successfully
-      }
-    } else {
-      console.warn("HUBSPOT_NEWSLETTER_LIST_ID is not configured. Contact created but not added to list.");
-    }
-
-    // Update contact properties for subscription tracking
-    // This is optional - subscription will succeed even if properties don't exist
-    // Only attempt if ENABLE_SUBSCRIPTION_PROPERTIES is set (skip by default until properties are created)
-    const enableProperties = process.env.ENABLE_SUBSCRIPTION_PROPERTIES === "true";
-    if (enableProperties) {
-      try {
-        // HubSpot date picker requires timestamp in milliseconds at midnight UTC
-        const now = new Date();
-        const midnightUTC = new Date(Date.UTC(
-          now.getUTCFullYear(),
-          now.getUTCMonth(),
-          now.getUTCDate(),
-          0, 0, 0, 0
-        ));
-        const timestampAtMidnight = midnightUTC.getTime().toString();
-        
-        const propertiesUpdated = await updateContactProperties(contactId, {
-          subscription_source: "website",
-          subscription_date: timestampAtMidnight, // Timestamp at midnight UTC for date picker
-        });
-        
-        if (!propertiesUpdated) {
-          console.info("Subscription properties not updated (properties may not exist in HubSpot). Contact was still created successfully.");
-        }
-      } catch (propertyError) {
-        // This should never happen, but just in case
-        console.warn("Unexpected error updating properties (non-fatal):", propertyError);
-        // Continue - subscription is still successful
-      }
-    } else {
-      console.info("Subscription property tracking is disabled. Set ENABLE_SUBSCRIPTION_PROPERTIES=true to enable after creating properties in HubSpot.");
+    } catch (emailError) {
+      // Non-fatal - subscription still succeeds even if email fails
+      console.warn("Error sending welcome email (non-fatal):", emailError);
     }
 
     return NextResponse.json(

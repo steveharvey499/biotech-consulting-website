@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { saveContactToSheet } from "@/lib/googleSheets";
 import {
-  createOrUpdateContact,
-  createContactNote,
-} from "@/lib/hubspot";
+  sendContactFormNotification,
+} from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,25 +26,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Split name into first and last name
-    const nameParts = name.trim().split(/\s+/);
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ") || "";
+    // Save contact to Google Sheet (non-blocking if not configured)
+    try {
+      await saveContactToSheet({
+        name,
+        email,
+        company,
+        message,
+      });
+    } catch (sheetError) {
+      // Non-fatal - contact form submission continues even if sheet save fails
+      console.warn("Error saving to Google Sheet (non-fatal):", sheetError);
+    }
 
-    // Create or update contact in HubSpot
-    const { contactId } = await createOrUpdateContact({
-      email,
-      firstName,
-      lastName,
-      company,
-    });
-
-    // Create note with the message
-    const noteText = `Contact Form Message:\n\n${message}${company ? `\n\nCompany: ${company}` : ""}`;
-    await createContactNote({
-      contactId,
-      note: noteText,
-    });
+    // Send notification email to admin via Resend
+    try {
+      await sendContactFormNotification({
+        name,
+        email,
+        company,
+        message,
+      });
+    } catch (emailError) {
+      // Non-fatal - log but don't fail the submission
+      console.warn("Error sending contact form notification email (non-fatal):", emailError);
+    }
 
     return NextResponse.json(
       { message: "Contact form submitted successfully" },

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const Contact = () => {
   const email = process.env.CONTACT_EMAIL || "steve@example.com";
   const linkedInUrl =
-    process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://linkedin.com/in/your-profile";
+    process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/steve-harvey-camenabio/";
 
   return (
     <div className="pt-24 pb-16 lg:pt-32 lg:pb-24">

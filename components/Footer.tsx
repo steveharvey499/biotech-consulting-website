@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const email = process.env.CONTACT_EMAIL || "steve@example.com";
   const linkedInUrl =
-    process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://linkedin.com/in/your-profile";
+    process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/steve-harvey-camenabio/";
 
   return (
     <footer className="bg-adenine text-white">

@@ -97,20 +97,65 @@ HUBSPOT_NEWSLETTER_LIST_ID=your_list_id_here
 # HubSpot Public Configuration (for client-side)
 NEXT_PUBLIC_HUBSPOT_PORTAL_ID=your_portal_id_here
 NEXT_PUBLIC_HUBSPOT_MEETING_URL=your_meeting_url_here
+
+# Resend Configuration (for welcome emails - works with Starter plan)
+RESEND_API_KEY=your_resend_api_key_here
+RESEND_FROM_EMAIL=onboarding@resend.dev
 ```
 
-## Step 7: Set Up Email Workflows (Optional)
+## Step 7: Set Up Welcome Emails for Newsletter Subscribers
 
-HubSpot workflows can automatically send emails when contacts are created or added to lists:
+### For HubSpot Starter Plan Users (Recommended: Resend)
+
+Since HubSpot Starter plan doesn't include Workflows or transactional email API, we use **Resend** to send welcome emails. This is already implemented in the code.
+
+1. **Sign up for Resend** (free tier available):
+   - Go to [resend.com](https://resend.com)
+   - Sign up for a free account
+   - Free tier includes: 100 emails/day, 3,000 emails/month
+
+2. **Get your API Key**:
+   - Go to **API Keys** in Resend dashboard
+   - Click **"Create API Key"**
+   - Copy the API key
+
+3. **Set Environment Variables**:
+   ```bash
+   # Resend API Key (for welcome emails)
+   RESEND_API_KEY=re_your_api_key_here
+   
+   # Optional: Custom "from" email address
+   # Default: onboarding@resend.dev (works for testing)
+   # For production, verify your domain in Resend
+   RESEND_FROM_EMAIL=noreply@yourdomain.com
+   ```
+
+4. **Install Resend package** (if not already installed):
+   ```bash
+   npm install resend
+   ```
+
+5. **Verify it works**:
+   - Subscribe to your newsletter
+   - Check your email inbox for the welcome email
+
+**Note**: The welcome email is sent automatically when someone subscribes. If Resend is not configured, the subscription still succeeds (email sending is non-blocking).
+
+### Alternative: HubSpot Workflows (Professional/Enterprise Plans Only)
+
+⚠️ **Note**: HubSpot Workflows require **Professional** tier or higher. Starter plan users should use Resend (above).
+
+If you have Professional/Enterprise:
 
 1. Navigate to **Automation > Workflows**
-2. Create a new workflow
-3. Set trigger: **"Contact is created"** or **"Contact is added to list"**
-4. Add action: **"Send email"**
-5. Configure email template
-6. Activate workflow
-
-This replaces the need for API-based email sending.
+2. Click **"Create workflow"**
+3. Choose **"Contact-based"** workflow
+4. Set trigger: **"Contact is added to list"**
+   - Select your **"Newsletter Subscribers"** list
+5. Add action: **"Send email"**
+   - Choose or create a welcome email template
+   - Customize the email content with personalization tokens (e.g., `{{contact.firstname}}`)
+6. Click **"Activate"**
 
 ## Step 8: Test Integration
 
@@ -125,6 +170,8 @@ This replaces the need for API-based email sending.
 2. Check HubSpot **Contacts** - contact should be created/updated
 3. Check **"Newsletter Subscribers"** list - contact should be added
 4. Verify `subscription_source` and `subscription_date` properties are set
+5. **If using API-based emails**: Check your email inbox for welcome email
+6. **If using workflows**: Check workflow activity log to verify email was sent
 
 ### Test Tracking
 1. Visit your website
@@ -157,6 +204,14 @@ This replaces the need for API-based email sending.
 - Verify `NEXT_PUBLIC_HUBSPOT_MEETING_URL` is correct
 - Check meeting link is active in HubSpot
 - Verify iframe permissions in browser console
+
+### Welcome Emails Not Sending
+- **If using workflows**: Check workflow is activated and trigger conditions are met
+- **If using API**: Verify `SEND_WELCOME_EMAIL=true` is set
+- Check Private App has email sending scopes (`marketing.send` or `email.send`)
+- Verify HubSpot plan includes email sending (Marketing Hub or Sales Hub)
+- Check Vercel logs for email sending errors
+- If using template: Verify `HUBSPOT_WELCOME_EMAIL_TEMPLATE_ID` is correct
 
 ## API Rate Limits
 

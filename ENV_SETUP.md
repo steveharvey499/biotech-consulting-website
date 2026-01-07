@@ -41,12 +41,33 @@ NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/steve-harvey/20min
 # LinkedIn URL - Replace with your actual profile URL  
 NEXT_PUBLIC_LINKEDIN_URL=https://linkedin.com/in/steveharvey
 
-# Other variables (optional for now)
-RESEND_API_KEY=
-NEXT_PUBLIC_GA4_ID=
+# Beehiiv Configuration (for newsletter subscriptions)
+BEEHIV_API_KEY=your_beehiiv_api_key_here
+BEEHIV_PUBLICATION_ID=your_publication_id_here
+
+# Resend Configuration (for email notifications and welcome emails)
+RESEND_API_KEY=your_resend_api_key_here
+RESEND_FROM_EMAIL=onboarding@resend.dev
+
+# Contact Form Configuration
 CONTACT_EMAIL=steve@example.com
 NOTIFICATION_EMAIL=steve@example.com
+
+# Google Sheets Configuration (optional - for contact form storage)
+# Leave these empty if you only want email notifications
+GOOGLE_SHEETS_ID=your_google_sheet_id_here
+GOOGLE_SERVICE_ACCOUNT_EMAIL=your_service_account@project.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour private key here\n-----END PRIVATE KEY-----\n"
+
+# Analytics
+NEXT_PUBLIC_GA4_ID=your_ga4_id_here
+
+# Site Configuration
 NEXT_PUBLIC_SITE_URL=http://localhost:3001
+
+# HubSpot Configuration (optional - only if using HubSpot meeting widget)
+# NEXT_PUBLIC_HUBSPOT_PORTAL_ID=your_hubspot_portal_id_here
+# NEXT_PUBLIC_HUBSPOT_MEETING_URL=your_hubspot_meeting_url_here
 ```
 
 ## Troubleshooting

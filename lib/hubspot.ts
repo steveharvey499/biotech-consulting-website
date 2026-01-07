@@ -247,3 +247,73 @@ export async function updateContactProperties(
   }
 }
 
+export interface SendEmailOptions {
+  to: string;
+  subject: string;
+  htmlContent?: string;
+  textContent?: string;
+  templateId?: number;
+}
+
+/**
+ * Send a transactional email via HubSpot
+ * Note: This requires HubSpot Marketing Hub Professional or Enterprise (with transactional email add-on)
+ * Starter plan users should use HubSpot Workflows instead (see HUBSPOT_SETUP.md)
+ * 
+ * You can either:
+ * 1. Use a templateId (recommended) - create email template in HubSpot first
+ * 2. Use htmlContent/textContent for custom content
+ */
+export async function sendTransactionalEmail(
+  options: SendEmailOptions
+): Promise<boolean> {
+  try {
+    if (!process.env.HUBSPOT_ACCESS_TOKEN) {
+      console.warn("HUBSPOT_ACCESS_TOKEN is not configured");
+      return false;
+    }
+
+    const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
+    
+    // Use HubSpot's transactional email API
+    const emailPayload: any = {
+      emailId: options.templateId || undefined,
+      message: {
+        to: options.to,
+        subject: options.subject,
+      },
+    };
+
+    // Add content if provided (for custom emails without template)
+    if (options.htmlContent) {
+      emailPayload.message.html = options.htmlContent;
+    }
+    if (options.textContent) {
+      emailPayload.message.text = options.textContent;
+    }
+
+    const response = await fetch(
+      "https://api.hubapi.com/email/public/v1/singleEmail/send",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(emailPayload),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("HubSpot email API error:", response.status, errorText);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error sending transactional email via HubSpot:", error);
+    return false;
+  }
+}
+
