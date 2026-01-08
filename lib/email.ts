@@ -92,8 +92,13 @@ export async function sendContactFormNotification(
   options: ContactFormNotificationOptions
 ): Promise<boolean> {
   try {
+    console.log("Attempting to send contact form notification:", {
+      hasResendClient: !!resend,
+      resendApiKeyConfigured: !!process.env.RESEND_API_KEY,
+    });
+
     if (!resend) {
-      console.warn("RESEND_API_KEY is not configured. Contact form notification not sent.");
+      console.error("RESEND_API_KEY is not configured. Contact form notification not sent.");
       return false;
     }
 
@@ -101,8 +106,15 @@ export async function sendContactFormNotification(
       process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
     const adminEmail = process.env.CONTACT_EMAIL || process.env.NOTIFICATION_EMAIL;
 
+    console.log("Email configuration:", {
+      fromEmail,
+      adminEmail,
+      hasContactEmail: !!process.env.CONTACT_EMAIL,
+      hasNotificationEmail: !!process.env.NOTIFICATION_EMAIL,
+    });
+
     if (!adminEmail) {
-      console.warn("CONTACT_EMAIL or NOTIFICATION_EMAIL not configured. Contact form notification not sent.");
+      console.error("CONTACT_EMAIL or NOTIFICATION_EMAIL not configured. Contact form notification not sent.");
       return false;
     }
 
@@ -140,6 +152,13 @@ ${options.message}
 ---
 This message was sent from your website contact form.`;
 
+    console.log("Sending email via Resend:", {
+      from: fromEmail,
+      to: adminEmail,
+      replyTo: options.email,
+      subject: `New Contact Form Submission from ${options.name}`,
+    });
+
     const result = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
@@ -149,11 +168,22 @@ This message was sent from your website contact form.`;
       text: notificationEmailText,
     });
 
+    console.log("Resend API response:", {
+      success: !result.error,
+      error: result.error,
+      data: result.data,
+    });
+
     if (result.error) {
-      console.error("Error sending contact form notification:", result.error);
+      console.error("Error sending contact form notification:", {
+        error: result.error,
+        message: result.error.message,
+        name: result.error.name,
+      });
       return false;
     }
 
+    console.log("Contact form notification sent successfully to:", adminEmail);
     return true;
   } catch (error) {
     console.error("Error sending contact form notification:", error);
