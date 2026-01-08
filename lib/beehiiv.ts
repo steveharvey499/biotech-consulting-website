@@ -34,14 +34,22 @@ export async function subscribeToNewsletter(
       throw new Error("BEEHIV_PUBLICATION_ID is not configured");
     }
 
+    // Ensure Publication ID is in V2 format (starts with 'pub_')
+    // If user pasted the V1 ID, we can detect and use it, but V2 is preferred
+    const formattedPublicationId = publicationId.startsWith('pub_') 
+      ? publicationId 
+      : `pub_${publicationId}`;
+
     // Beehiiv API v2 endpoint for subscribing to a publication
-    const apiUrl = `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`;
+    const apiUrl = `https://api.beehiiv.com/v2/publications/${formattedPublicationId}/subscriptions`;
 
     console.log("Beehiiv API call:", {
       url: apiUrl,
       email: email,
-      publicationId: publicationId,
+      originalPublicationId: publicationId,
+      formattedPublicationId: formattedPublicationId,
       hasApiKey: !!apiKey,
+      apiKeyLength: apiKey?.length || 0,
     });
 
     const response = await fetch(apiUrl, {

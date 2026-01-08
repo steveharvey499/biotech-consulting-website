@@ -40,16 +40,24 @@ export async function POST(request: NextRequest) {
     }
 
     // Send notification email to admin via Resend
+    console.log("Preparing to send contact form notification email");
     try {
-      await sendContactFormNotification({
+      const emailResult = await sendContactFormNotification({
         name,
         email,
         company,
         message,
       });
+      console.log("Contact form notification email result:", emailResult);
     } catch (emailError) {
       // Non-fatal - log but don't fail the submission
-      console.warn("Error sending contact form notification email (non-fatal):", emailError);
+      console.error("Error sending contact form notification email (non-fatal):", emailError);
+      if (emailError instanceof Error) {
+        console.error("Email error details:", {
+          message: emailError.message,
+          stack: emailError.stack,
+        });
+      }
     }
 
     return NextResponse.json(

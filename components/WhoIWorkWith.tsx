@@ -1,7 +1,7 @@
 const pillars = [
   {
     letter: "A",
-    title: "Amplification",
+    title: "Attention",
     subtitle: "Develop brands that attract talent and customers",
     color: "adenine",
     whyItMatters:
