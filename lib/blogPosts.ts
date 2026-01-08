@@ -23,11 +23,11 @@ export const blogPosts: BlogPost[] = [
   {
     id: "amplification-brand-strategy",
     letter: "A",
-    title: "The Brand Amplification Strategy: Zero to 10M+ Impressions",
+    title: "The Brand Attention Strategy: 0 to 10M+ Impressions",
     excerpt: "What are we going to do? No one knows us! That panicked thought hit me hard in 2022 when a survey revealed the uncomfortable truth: hardly anyone had heard of our company. Here's how I went from zero to 10M+ impressions with almost £0 spent on marketing.",
     date: "2025-12-30",
     readTime: "7 min read",
-    category: "Amplification",
+    category: "Attention",
     content: `
       <p>"What are we going to do? No one knows us!"</p>
       
@@ -37,30 +37,38 @@ export const blogPosts: BlogPost[] = [
       
       <p>As every founder-CEO knows, I didn't have the time for a marketing campaign. I also didn't have the budget.</p>
       
-      <p>So I decided to use LinkedIn to amplify my voice and our company. One post at a time, I'd share what I knew. My hope was that sharing technical insights, founder lessons, and the problems we were solving would bring people along on our journey.</p>
+      <p>So I decided to use LinkedIn to capture attention for my voice and our company. One post at a time, I'd share what I knew. My hope was that sharing technical insights, founder lessons, and the problems we were solving would bring people along on our journey.</p>
       
-      <p>Post number 1 was a public declaration that I would do it. There was no going back.</p>
+      <p>Post number 1 was a public declaration that I would do it. So there was no going back.</p>
       
-      <h2>The Strategy to Amplify our Company</h2>
+      <h2>Generosity, Not Self-Promotion</h2>
       
-      <p>Only a small number of posts were company-specific or generic motivational quotes. Instead, I shared insights that could help others:</p>
+      <p>If every post is about you, your follower base will be, just you. But if you share what you know and what you've experienced, you may be helping others. And that's what builds a following.</p>
       
-      <ul>
-        <li><strong>Technical breakthroughs</strong> - I broke down complex biotech problems we were solving, making them accessible without dumbing them down.</li>
-        <li><strong>Founder lessons</strong> - I shared my expensive mistakes, the pivots, and the decisions that kept me up at night.</li>
-        <li><strong>Our mission</strong> - I explained why we were doing this work and what impact we hoped to have.</li>
-        <li><strong>The building process</strong> - I showed what it actually looks like to grow a biotech company from lab bench to scale.</li>
-      </ul>
+      <p>When you share a technical insight, you're saving someone months of trial and error. When you break down a problem you solved, you're helping other founders avoid the same mistakes. When you explain your thinking, you're contributing to your industry's collective knowledge.</p>
       
-      <p>Of course, I had no time for this. I didn't need another job on top of everything else. I also didn't want to look stupid by writing something dumb.</p>
+      <p>Those posts are generous, not self-promotional. And paradoxically, that's exactly what builds your brand.</p>
       
-      <p>Every single post, I almost deleted after 5 minutes. (I still do.)</p>
+      <p>Then, every now and then, when you post about a job opening or a company milestone, tens of thousands of people are already paying attention.</p>
       
-      <p>But I kept hitting publish.</p>
+      <h2>Stop Selling. Start Sharing.</h2>
       
-      <h2>The Compounding Effect</h2>
+      <p>A strategy to share valuable information will build a following. Take people with you on that journey, so you are at the front of their mind when they're ready to buy. Here are four simple ideas I ran with:</p>
       
-      <p>After hundreds of posts here's what I achieved:</p>
+      <ol>
+        <li><strong>Technical breakthroughs:</strong> I broke down complex biotech problems we were solving, making them accessible without dumbing them down.</li>
+        <li><strong>Founder lessons:</strong> I shared my expensive mistakes, the pivots, and the decisions that kept me up at night.</li>
+        <li><strong>Our mission:</strong> I explained why we were doing this work and what impact we hoped to have.</li>
+        <li><strong>The building process:</strong> I showed what it actually looks like to grow a biotech company from the lab bench to scale.</li>
+      </ol>
+      
+      <h2>I've No Time For This!</h2>
+      
+      <p>As you're building a company, your to-do list is infinite. When I started, I didn't need another job on top of everything else. I also didn't want to look stupid by writing something dumb.</p>
+      
+      <p>Every single post, I almost deleted after 5 minutes. (I still do.) But I kept hitting publish.</p>
+      
+      <p>And this is another great lesson. Consistency matters, and the effects compound over time. After hundreds of posts, here's what I achieved:</p>
       
       <ul>
         <li>~40,000 followers</li>
@@ -70,7 +78,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>But those numbers only matter because of what they enable. I posted about a new role, and within 24 hours, 20,000 people had seen it with zero promotional costs.</p>
       
-      <p>Let me show you what that means in real terms:</p>
+      <p>Let me show you what that attention-grabbing means in real terms:</p>
       
       <p><strong>Before:</strong></p>
       
@@ -88,33 +96,21 @@ export const blogPosts: BlogPost[] = [
         <li>Zero recruitment fees for most positions</li>
       </ul>
       
-      <p>Suddenly, you've saved tens of thousands on hiring. Your brand is attracting talent to you rather than you chasing it. That's the power of amplifying your voice and company: your expertise becomes your recruitment engine.</p>
+      <p>Suddenly, you've saved tens of thousands on hiring. Your brand is bringing talent to you rather than you having to chase it. That's the power of capturing attention: your expertise becomes a recruitment engine.</p>
       
-      <h2>Generosity, Not Self-Promotion</h2>
+      <h2>What I've Learned About Founder and CEO Brand</h2>
       
-      <p>Here's the mindset shift that changed everything for me:</p>
+      <p>Your expertise is more valuable than you think. You're solving problems daily that others in your industry would kill to understand. Every technical challenge you've cracked, every hiring mistake you've made, every product decision you've wrestled with. That's valuable knowledge sitting in your head. Don't gatekeep it. Share it to get the attention your business needs.</p>
       
-      <p>If every post is about you, your follower base will be, just you. But if you share what you know and what you've experienced, you help others. That's what builds a following.</p>
-      
-      <p>When you share a technical insight, you're saving someone months of trial and error. When you break down a problem you solved, you're helping other founders avoid the same mistakes. When you explain your thinking, you're contributing to your industry's collective knowledge.</p>
-      
-      <p>Those posts are generous, not self-promotional. And paradoxically, that's exactly what builds your brand.</p>
-      
-      <p>Then, every now and then, when you post about a job opening or a company milestone, 10s of thousands of people are already paying attention.</p>
-      
-      <h2>What I've Learned About Amplification</h2>
-      
-      <p>Your expertise is more valuable than you think. You're solving problems daily that others in your industry would kill to understand. Every technical challenge you've cracked, every hiring mistake you've made, every product decision you've wrestled with, that's valuable knowledge sitting in your head. Don't gatekeep it. Amplify it.</p>
-      
-      <p>Consistency beats perfection. I still get anxious before hitting publish. That anxiety means you're being real. Amplification works when it's authentic, not polished. Your 573rd post matters more than your perfect first post.</p>
+      <p>Consistency beats perfection. I still get anxious before hitting publish. That anxiety means you're being real. Posting works when it's authentic, not polished. Your 573rd post matters more than your perfect first post.</p>
       
       <p>Technical depth attracts technical talent. Don't dumb down your expertise. When I share the hard problems we're working on, the right people get excited. Those are exactly the people you want to attract—whether as employees, partners, or customers.</p>
       
       <h2>Your Expertise is Waiting</h2>
       
-      <p>Right now, you have knowledge in your head that could attract your next exceptional hire, save you £50K+ in recruitment fees this year, position you as the obvious expert in your field.</p>
+      <p>Right now, you have knowledge in your head that could attract your next exceptional hire, save you £50K+ in recruitment fees this year, and position you as the obvious expert in your field.</p>
       
-      <p>The only question is: are you going to start amplifying your brand?</p>
+      <p>The only question is: are you going to start capturing attention for your brand?</p>
     `,
   },
   {
