@@ -117,40 +117,48 @@ export const blogPosts: BlogPost[] = [
     id: "culture-foundational-principles",
     letter: "C",
     title: "Foundational Principles for Building a Company",
-    excerpt: "In the first years of a company, you'll be so busy spinning many plates that it becomes easy to convince yourself a candidate is 'good enough'. Starting a company from scratch is a rare opportunity to consider the team characteristics you need to succeed.",
+    excerpt: "In the first years of a company, you'll be so busy that your head will be spinning. Starting a company from scratch is a unique opportunity to define the team characteristics you need to succeed. Here are three foundational principles that will guide your early hiring decisions.",
     date: "2025-12-30",
     readTime: "4 min read",
     category: "Culture",
     content: `
-      <p>In the first years of a company, you'll be so busy that your head will be spinning. You'll be the CSO, the CEO, and possibly Chief Barista. Not only is there an infinite to-do list, you'll also be learning on the spot. You can no longer do everything yourself, and hiring becomes critical. But because you're so busy spinning many plates, it becomes easy to convince yourself that a candidate is "good enough".</p>
+      <p>In the first years of a company, you'll be so busy that your head will be spinning. You'll be the CSO, the CEO, and possibly Chief Barista. Not only is there an infinite to-do list, but you'll also be learning on the spot. You can no longer do everything yourself, so hiring becomes mission-critical. But because you're so busy, it becomes easy to convince yourself that a candidate is "good enough".</p>
       
-      <p>Starting a company from scratch is a rare opportunity to consider the team characteristics you need to succeed, and those that will make you fail. This can be a first test of leadership for a longer journey ahead.</p>
+      <p>Looking back, I realise that starting a company from scratch is a unique opportunity to define the team characteristics that you need to succeed. And to recognise those that can lead to failure. That moment becomes an early test of leadership for the journey ahead.</p>
       
-      <p>When it was just me rattling around an empty office, at this point in my leadership journey, three foundational principles were clear to me:</p>
+      <p>When it was just me rattling around an empty office, I was trying to define solutions to this problem. What I didn't realise was that I had come up with three foundational company principles. Simply put, a principle is the articulation of a solution to a problem.</p>
       
-      <ul>
-        <li>A great company will have both great people and a great culture.</li>
-      </ul>
+      <h2>Principle 1: A great company will have both great people AND great culture.</h2>
       
-      <p>Culture and top talent are intertwined. For me, this principle was a gateway into what comes next:</p>
+      <p>This seems such an obvious statement to write down, doesn't it? Culture and top talent are intertwined. For me, this principle was a gateway into what comes next:</p>
       
-      <ul>
-        <li>The best talent seeks company cultures that give them purpose and opportunities. And if you're at the edge of innovation, it has to be a culture that brings problems to the surface so they can be solved.</li>
-      </ul>
+      <h2>Principle 2: The best talent seeks purpose and challenge, not just compensation.</h2>
       
-      <p>And that talent:</p>
+      <p>If you're truly at the edge of innovation, your culture should reflect that. Problems get surfaced, not hidden. Hard questions get asked. The work matters. That's what attracts people who can actually do the work.</p>
       
-      <ul>
-        <li>Will have great character, skills, determination and the agency to solve a hard problem (the company's mission).</li>
-      </ul>
+      <h2>Principle 3: Great talent has skills, determination, and agency.</h2>
       
-      <p>On the surface, these are simple statements. But they are foundation principles. Almost all other principles for building a company can come from this point.</p>
+      <p>Not skills or determination. Not determination without agency. All three. You need people who can solve hard problems when you're not in the room. When the playbook doesn't exist yet. When the answer is "figure it out."</p>
       
-      <p>For example, for me, integrity is a measure of great character. But I've sat in several interviews when people lie.</p>
+      <h2>How this played out:</h2>
       
-      <p>5 minutes into an interview for our ~5th hire, we asked someone how big they thought the company was.</p>
+      <p>Five minutes into our fifth interview, we asked a candidate how big they thought the company was.</p>
       
-      <p>They said "around 200 people". They didn't get the job.</p>
+      <p>"Around 200 people," they said.</p>
+      
+      <p>There were four of us.</p>
+      
+      <p>They didn't get the job.</p>
+      
+      <p>Not because they were wrong about the number. Because they were willing to lie, rather than say "I don't know."</p>
+      
+      <p>Almost every other principle we built came from these three.</p>
+      
+      <h2>The test:</h2>
+      
+      <p>Your early hires aren't just filling seats. They're defining what kind of company you're building. Every person you bring in will contribute to the culture.</p>
+      
+      <p>Choose carefully. Because in those first years, when your head is spinning and you're doing everything yourself, those principles might be the only thing keeping you from compromising your way into mediocrity.</p>
     `,
   },
 ];
