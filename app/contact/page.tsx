@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const Contact = () => {
-  const email = process.env.CONTACT_EMAIL || "steve@example.com";
+  const email = process.env.CONTACT_EMAIL || "steve@thesynthesis.co.uk";
   const linkedInUrl =
     process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/steve-harvey-camenabio/";
 

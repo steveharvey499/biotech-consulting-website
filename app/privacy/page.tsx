@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const PrivacyPolicy = () => {
-  const email = process.env.CONTACT_EMAIL || "steve@example.com";
+  const email = process.env.CONTACT_EMAIL || "steve@thesynthesis.co.uk";
 
   return (
     <div className="pt-24 pb-16 lg:pt-32 lg:pb-24">

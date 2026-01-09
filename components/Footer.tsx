@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const email = process.env.CONTACT_EMAIL || "steve@example.com";
+  const email = process.env.CONTACT_EMAIL || "steve@thesynthesis.co.uk";
   const linkedInUrl =
     process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/steve-harvey-camenabio/";
 
