@@ -33,7 +33,7 @@ const pillars = [
     subtitle: "Build principles-led high-performance teams",
     color: "cytosine",
     whyItMatters:
-      "Great science plus dysfunctional teams equals failure. Your team of scientist, operations and business people need to be aligned on a common target. Principles-based leadership can align your team, reduce inconsistencies and drive hiring.",
+      "Great science plus dysfunctional teams equals failure. Your team of scientist, operations and business people need to be aligned on a common target. Principles-based leadership can align your team, reduce inconsistencies and drive hiring. It sets a high bar for the perfomance you need.",
     howIHelp: [
       "Develop company principles that drive engagement, recruitment, and retention",
       "Create principles-based leadership frameworks that scale beyond the CEO or founder",
