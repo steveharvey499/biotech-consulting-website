@@ -19,7 +19,7 @@ const pillars = [
     subtitle: "Strategic direction and knowing when to pivot",
     color: "thymine",
     whyItMatters:
-      "Knowing when to pivot versus persevere is the hardest decision founders face. Pivot too early and you waste your best technical insight. Wait too long and you run out of runway before finding product-market fit. Missing the signal costs you everything.",
+      "Every founder faces moments where the path forward splits. Pivot or persevere. Raise now or extend runway. Fire your co-founder or work it out. These are hard decisions made in a  fog, with incomplete information and everything on the line. Missing the signal could cost you everything.",
     howIHelp: [
       "Recognize inflection points and market signals before they're obvious",
       "Navigate strategic pivots without losing your team or momentum",
@@ -92,7 +92,7 @@ const WhoIWorkWith = () => {
               <span className="text-cytosine">ACTG</span>
             </h2>
             <p className="text-body text-text-body max-w-3xl mx-auto">
-              The CEOs I meet are stretched with endless demands, impossible tradeoffs, and no time to step back and actually improve how they lead. I focus on four areas of leadership development that create the most leverage: how you amplify your message and build your brand, how you set and communicate trajectory, how you shape culture, and how you drive tangible gains. The aim is to invest in making you the leader your company needs at each stage of growth.
+              The CEOs I meet are stretched with endless demands, impossible tradeoffs, and no time to step back and actually improve how they lead. I focus on four areas of leadership development that create the most leverage:  getting the attention you need to build a brand, how you set and communicate trajectory, how you shape culture, and how you drive tangible gains. The aim is to invest in making you the leader your company needs at each stage of growth.
             </p>
           </div>
 
