@@ -128,19 +128,19 @@ export const blogPosts: BlogPost[] = [
       
       <p>When it was just me rattling around an empty office, I was trying to define solutions to this problem. What I didn't realise was that I had come up with three foundational company principles. Simply put, a principle is the articulation of a solution to a problem.</p>
       
-      <h2>Principle 1: A great company will have both great people AND great culture.</h2>
+      <h3>Principle 1: A great company will have both great people AND great culture.</h3>
       
       <p>This seems such an obvious statement to write down, doesn't it? Culture and top talent are intertwined. For me, this principle was a gateway into what comes next:</p>
       
-      <h2>Principle 2: The best talent seeks purpose and challenge, not just compensation.</h2>
+      <h3>Principle 2: The best talent seeks purpose and challenge, not just compensation.</h3>
       
       <p>If you're truly at the edge of innovation, your culture should reflect that. Problems get surfaced, not hidden. Hard questions get asked. The work matters. That's what attracts people who can actually do the work.</p>
       
-      <h2>Principle 3: Great talent has skills, determination, and agency.</h2>
+      <h3>Principle 3: Great talent has skills, determination, and agency.</h3>
       
       <p>Not skills or determination. Not determination without agency. All three. You need people who can solve hard problems when you're not in the room. When the playbook doesn't exist yet. When the answer is "figure it out."</p>
       
-      <h2>How this played out:</h2>
+      <h3>How this played out:</h3>
       
       <p>Five minutes into our fifth interview, we asked a candidate how big they thought the company was.</p>
       
@@ -154,7 +154,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Almost every other principle we built came from these three.</p>
       
-      <h2>The test:</h2>
+      <h3>The test:</h3>
       
       <p>Your early hires aren't just filling seats. They're defining what kind of company you're building. Every person you bring in will contribute to the culture.</p>
       
