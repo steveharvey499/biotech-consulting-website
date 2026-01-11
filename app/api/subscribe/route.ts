@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { subscribeToNewsletter } from "@/lib/beehiiv";
 import { sendWelcomeEmail } from "@/lib/email";
+import { saveSubscriptionToSheet } from "@/lib/googleSheets";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { 
       email, 
-      name,
+      firstName,
+      lastName,
       role, 
       companyFocus, 
       biggestChallenge, 
@@ -35,7 +37,8 @@ export async function POST(request: NextRequest) {
     // Log subscription data with questions for analytics
     console.log("Subscription data received:", {
       email,
-      name,
+      firstName,
+      lastName,
       role,
       companyFocus,
       biggestChallenge,
@@ -43,14 +46,28 @@ export async function POST(request: NextRequest) {
       referralSource,
     });
 
+    // Save subscription data to Google Sheets (non-blocking if not configured)
+    try {
+      await saveSubscriptionToSheet({
+        email,
+        firstName: firstName || "",
+        lastName: lastName || "",
+        role,
+        companyFocus,
+        biggestChallenge,
+        teamSize,
+        referralSource,
+      });
+    } catch (sheetError) {
+      // Non-fatal - subscription continues even if sheet save fails
+      console.warn("Error saving subscription to Google Sheet (non-fatal):", sheetError);
+    }
+
     // Subscribe to Beehiiv newsletter
     try {
       console.log("Attempting to subscribe email to Beehiiv:", email);
       const result = await subscribeToNewsletter(email, true);
       console.log("Subscription result:", result);
-      
-      // TODO: If Beehiiv supports custom fields, you can add the additional data here
-      // For now, we log it for your records
     } catch (subscriptionError) {
       console.error("Error subscribing to Beehiiv newsletter:", subscriptionError);
       
@@ -92,7 +109,8 @@ export async function POST(request: NextRequest) {
     // Log successful subscription with all data for your records
     console.log("Subscription completed successfully:", {
       email,
-      name,
+      firstName,
+      lastName,
       role,
       companyFocus,
       biggestChallenge,

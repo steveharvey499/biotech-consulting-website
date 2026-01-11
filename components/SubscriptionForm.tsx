@@ -6,7 +6,8 @@ import { trackConversion } from "@/lib/analytics";
 
 interface SubscriptionFormData {
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   role?: string;
   companyFocus?: string;
   biggestChallenge?: string;
@@ -54,13 +55,13 @@ const SubscriptionForm = () => {
       return; // Silent fail for bots
     }
 
-    // Validate name
-    if (!data.name) {
+    // Validate first name
+    if (!data.firstName) {
       return;
     }
 
-    // Save name and move to questions step
-    setFormData({ ...formData, name: data.name });
+    // Save names and move to questions step
+    setFormData({ ...formData, firstName: data.firstName, lastName: data.lastName || "" });
     setCurrentStep(3);
   };
 
@@ -72,7 +73,8 @@ const SubscriptionForm = () => {
 
     console.log("Submitting subscription form with data:", {
       email: data.email,
-      name: data.name,
+      firstName: data.firstName,
+      lastName: data.lastName,
       role: data.role,
       companyFocus: data.companyFocus,
       biggestChallenge: data.biggestChallenge,
@@ -92,7 +94,8 @@ const SubscriptionForm = () => {
         },
         body: JSON.stringify({
           email: data.email,
-          name: data.name,
+          firstName: data.firstName,
+          lastName: data.lastName,
           role: data.role,
           companyFocus: data.companyFocus,
           biggestChallenge: data.biggestChallenge,
@@ -244,39 +247,56 @@ const SubscriptionForm = () => {
             value={formData.email}
           />
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1">
-              <label htmlFor="subscription-name" className="sr-only">
-                Your name
-              </label>
-              <input
-                type="text"
-                id="subscription-name"
-                placeholder="Enter your name"
-                {...register("name", {
-                  required: "Name is required",
-                  minLength: {
-                    value: 2,
-                    message: "Name must be at least 2 characters",
-                  },
-                })}
-                className="w-full px-4 py-3 border border-guanine/30 rounded-lg focus:ring-2 focus:ring-thymine focus:border-thymine outline-none transition-colors"
-                aria-invalid={errors.name ? "true" : "false"}
-                aria-label="Your name"
-              />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600" role="alert">
-                  {errors.name.message}
-                </p>
-              )}
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="subscription-first-name" className="block text-sm font-semibold text-adenine mb-2">
+                  First Name <span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="subscription-first-name"
+                  placeholder="First name"
+                  {...register("firstName", {
+                    required: "First name is required",
+                    minLength: {
+                      value: 2,
+                      message: "First name must be at least 2 characters",
+                    },
+                  })}
+                  className="w-full px-4 py-3 border border-guanine/30 rounded-lg focus:ring-2 focus:ring-thymine focus:border-thymine outline-none transition-colors"
+                  aria-invalid={errors.firstName ? "true" : "false"}
+                  aria-label="First name"
+                />
+                {errors.firstName && (
+                  <p className="mt-1 text-sm text-red-600" role="alert">
+                    {errors.firstName.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label htmlFor="subscription-last-name" className="block text-sm font-semibold text-adenine mb-2">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="subscription-last-name"
+                  placeholder="Last name"
+                  {...register("lastName")}
+                  className="w-full px-4 py-3 border border-guanine/30 rounded-lg focus:ring-2 focus:ring-thymine focus:border-thymine outline-none transition-colors"
+                  aria-label="Last name"
+                />
+              </div>
             </div>
-            <button
-              type="submit"
-              className="px-6 py-3 bg-thymine text-white rounded-lg font-semibold hover:bg-thymine-light focus:outline-none focus:ring-2 focus:ring-thymine focus:ring-offset-2 transition-colors whitespace-nowrap"
-              aria-label="Continue to questions"
-            >
-              Continue
-            </button>
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="px-6 py-3 bg-thymine text-white rounded-lg font-semibold hover:bg-thymine-light focus:outline-none focus:ring-2 focus:ring-thymine focus:ring-offset-2 transition-colors whitespace-nowrap"
+                aria-label="Continue to questions"
+              >
+                Continue
+              </button>
+            </div>
           </div>
 
           <div className="flex justify-start pt-2">
@@ -301,7 +321,7 @@ const SubscriptionForm = () => {
             autoComplete="off"
           />
 
-          {/* Hidden fields to preserve email and name */}
+          {/* Hidden fields to preserve email and names */}
           <input
             type="hidden"
             {...register("email")}
@@ -309,8 +329,13 @@ const SubscriptionForm = () => {
           />
           <input
             type="hidden"
-            {...register("name")}
-            value={formData.name}
+            {...register("firstName")}
+            value={formData.firstName}
+          />
+          <input
+            type="hidden"
+            {...register("lastName")}
+            value={formData.lastName}
           />
 
           <div>
