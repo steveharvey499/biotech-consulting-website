@@ -5,7 +5,15 @@ import { sendWelcomeEmail } from "@/lib/email";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email } = body;
+    const { 
+      email, 
+      name,
+      role, 
+      companyFocus, 
+      biggestChallenge, 
+      teamSize,
+      referralSource
+    } = body;
 
     // Validation
     if (!email) {
@@ -24,11 +32,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Log subscription data with questions for analytics
+    console.log("Subscription data received:", {
+      email,
+      name,
+      role,
+      companyFocus,
+      biggestChallenge,
+      teamSize,
+      referralSource,
+    });
+
     // Subscribe to Beehiiv newsletter
     try {
       console.log("Attempting to subscribe email to Beehiiv:", email);
       const result = await subscribeToNewsletter(email, true);
       console.log("Subscription result:", result);
+      
+      // TODO: If Beehiiv supports custom fields, you can add the additional data here
+      // For now, we log it for your records
     } catch (subscriptionError) {
       console.error("Error subscribing to Beehiiv newsletter:", subscriptionError);
       
@@ -66,6 +88,18 @@ export async function POST(request: NextRequest) {
       // Non-fatal - subscription still succeeds even if email fails
       console.warn("Error sending welcome email (non-fatal):", emailError);
     }
+
+    // Log successful subscription with all data for your records
+    console.log("Subscription completed successfully:", {
+      email,
+      name,
+      role,
+      companyFocus,
+      biggestChallenge,
+      teamSize,
+      referralSource,
+      timestamp: new Date().toISOString(),
+    });
 
     return NextResponse.json(
       { message: "Subscription successful" },
