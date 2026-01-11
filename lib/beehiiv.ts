@@ -11,16 +11,27 @@ export interface SubscribeResult {
   data?: any;
 }
 
+export interface SubscriptionCustomFields {
+  name?: string;
+  role?: string;
+  company_focus?: string;
+  biggest_challenge?: string;
+  team_size?: string;
+  referral_source?: string;
+}
+
 /**
  * Subscribe an email to the Beehiiv newsletter publication
  * 
  * @param email - The email address to subscribe
  * @param reactivateExisting - Whether to reactivate if already unsubscribed (default: true)
+ * @param customFields - Optional custom fields to store with the subscription
  * @returns Promise with subscription result
  */
 export async function subscribeToNewsletter(
   email: string,
-  reactivateExisting: boolean = true
+  reactivateExisting: boolean = true,
+  customFields?: SubscriptionCustomFields
 ): Promise<SubscribeResult> {
   try {
     const apiKey = process.env.BEEHIV_API_KEY;
@@ -52,16 +63,31 @@ export async function subscribeToNewsletter(
       apiKeyLength: apiKey?.length || 0,
     });
 
+    // Build request body with custom fields if provided
+    const requestBody: any = {
+      email: email,
+      reactivate_existing: reactivateExisting,
+    };
+
+    // Add custom fields if provided
+    if (customFields && Object.keys(customFields).length > 0) {
+      requestBody.custom_fields = customFields;
+    }
+
+    console.log("Beehiiv API request body:", {
+      email: email,
+      reactivate_existing: reactivateExisting,
+      hasCustomFields: !!customFields,
+      customFields: customFields,
+    });
+
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email: email,
-        reactivate_existing: reactivateExisting,
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     const responseData = await response.json().catch(async (err) => {

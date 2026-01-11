@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { subscribeToNewsletter } from "@/lib/beehiiv";
 import { sendWelcomeEmail } from "@/lib/email";
-import { saveSubscriptionToSheet } from "@/lib/googleSheets";
+import { saveSubscriptionToSupabase } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,9 +46,9 @@ export async function POST(request: NextRequest) {
       referralSource,
     });
 
-    // Save subscription data to Google Sheets (non-blocking if not configured)
+    // Save subscription data to Supabase (non-blocking if not configured)
     try {
-      await saveSubscriptionToSheet({
+      await saveSubscriptionToSupabase({
         email,
         firstName: firstName || "",
         lastName: lastName || "",
@@ -58,9 +58,16 @@ export async function POST(request: NextRequest) {
         teamSize,
         referralSource,
       });
-    } catch (sheetError) {
-      // Non-fatal - subscription continues even if sheet save fails
-      console.warn("Error saving subscription to Google Sheet (non-fatal):", sheetError);
+    } catch (dbError) {
+      // Non-fatal - subscription continues even if database save fails
+      console.error("Error saving subscription to Supabase (non-fatal):", dbError);
+      if (dbError instanceof Error) {
+        console.error("Database error details:", {
+          message: dbError.message,
+          stack: dbError.stack,
+        });
+      }
+      // Continue - subscription still succeeds even if database fails
     }
 
     // Subscribe to Beehiiv newsletter

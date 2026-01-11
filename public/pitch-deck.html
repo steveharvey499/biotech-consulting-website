@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Synthesis - Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --adenine: #1A2F3D;
+            --adenine-light: #2D4A5C;
+            --thymine: #2A5A5B;
+            --thymine-light: #3D7272;
+            --guanine: #4A5568;
+            --guanine-mid: #6B7280;
+            --cytosine: #B8935E;
+            --cytosine-light: #D4AF7A;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7FAFC;
+            --text-primary: #1A1A1A;
+            --text-body: #2D3748;
+            --text-secondary: #718096;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: var(--text-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            width: 100vw;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .slide ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .slide li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .slide li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--thymine);
+            font-weight: bold;
+        }
+
+        /* Title Slide */
+        .slide-title {
+            background: var(--adenine);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-title h1 {
+            color: white;
+            font-size: clamp(3rem, 6vw, 5rem);
+        }
+
+        .slide-title .subtitle {
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            color: var(--cytosine);
+            margin-top: 1rem;
+        }
+
+        .slide-title .contact {
+            margin-top: 3rem;
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .dna-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 15rem;
+            font-weight: 900;
+            pointer-events: none;
+        }
+
+        .dna-bg span {
+            color: var(--cytosine);
+        }
+
+        /* Problem Slide */
+        .slide-problem {
+            background: var(--bg-primary);
+            border-left: 8px solid var(--thymine);
+        }
+
+        /* ACTG Framework */
+        .actg-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .actg-card {
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 6px solid;
+        }
+
+        .actg-card.adenine {
+            border-color: var(--adenine);
+            background: var(--bg-secondary);
+        }
+
+        .actg-card.thymine {
+            border-color: var(--thymine);
+            background: var(--bg-secondary);
+        }
+
+        .actg-card.cytosine {
+            border-color: var(--cytosine);
+            background: var(--bg-secondary);
+        }
+
+        .actg-card.guanine {
+            border-color: var(--guanine);
+            background: var(--bg-secondary);
+        }
+
+        .actg-letter {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .actg-card.adenine .actg-letter { color: var(--adenine); }
+        .actg-card.thymine .actg-letter { color: var(--thymine); }
+        .actg-card.cytosine .actg-letter { color: var(--cytosine); }
+        .actg-card.guanine .actg-letter { color: var(--guanine); }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--guanine);
+            border-left: 6px solid var(--thymine);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--cytosine);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--guanine);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--cytosine);
+            border-width: 3px;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--cytosine);
+            margin: 1rem 0;
+        }
+
+        /* CTA Slide */
+        .slide-cta {
+            background: var(--thymine);
+            color: white;
+            text-align: center;
+        }
+
+        .slide-cta h2 {
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: var(--cytosine);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--cytosine-light);
+        }
+
+        /* Color Backgrounds */
+        .bg-adenine {
+            background: var(--adenine);
+            color: white;
+        }
+
+        .bg-adenine h2, .bg-adenine h3 {
+            color: white;
+        }
+
+        .bg-thymine {
+            background: var(--thymine);
+            color: white;
+        }
+
+        .bg-thymine h2, .bg-thymine h3 {
+            color: white;
+        }
+
+        .bg-cytosine {
+            background: var(--cytosine);
+            color: var(--text-primary);
+        }
+
+        .bg-guanine {
+            background: var(--guanine);
+            color: white;
+        }
+
+        .bg-guanine h2, .bg-guanine h3 {
+            color: white;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            padding: 12px 20px;
+            background: var(--adenine);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .nav-button:hover {
+            background: var(--adenine-light);
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-controls {
+                display: none;
+            }
+            
+            .slide {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+
+            .actg-grid,
+            .services-grid,
+            .metrics-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide slide-title">
+        <div class="dna-bg">
+            <span>A</span><span>C</span><span>T</span><span>G</span>
+        </div>
+        <h1>THE SYNTHESIS</h1>
+        <p class="subtitle">Biotech CEO Consulting & Executive Coaching</p>
+        <div class="contact">
+            <p>Steve Harvey</p>
+            <p>steve@thesynthesis.co.uk</p>
+            <p>Cambridge, UK</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Problem -->
+    <div class="slide slide-problem">
+        <h2>Biotech Founders Face Impossible Tradeoffs</h2>
+        <ul>
+            <li>Your science is brilliant, but your company is unknown</li>
+            <li>Competing for talent, customers, and capital with limited resources</li>
+            <li>Endless demands, impossible tradeoffs, no time to step back</li>
+            <li>Making expensive mistakes that could be avoided</li>
+            <li>Navigating uncertainty alone: technical dead-ends, fundraising pressure, strategic pivots</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3: The Opportunity -->
+    <div class="slide bg-cytosine">
+        <h2>From Bench to Revenue: The Path Forward</h2>
+        <p>Too many biotech founders navigate this journey alone.</p>
+        <p>The gap between technical excellence and commercial success is real.</p>
+        <p><strong>The need:</strong> Practical guidance from someone who's actually built a biotech company.</p>
+        <p style="margin-top: 2rem; font-size: 1.25rem; font-weight: 600;">
+            No consultant speak. No 100-page decks. Just real-world experience.
+        </p>
+    </div>
+
+    <!-- Slide 4: About Steve -->
+    <div class="slide bg-guanine">
+        <h2>Built a Biotech Company from the Ground Up</h2>
+        <p>Started a biotech company because the technology didn't exist yet.</p>
+        <p>Witnessed technology revolutions: next-gen sequencing, CRISPR.</p>
+        <p>Identified critical gap in DNA synthesis technology.</p>
+        <div style="margin-top: 2rem;">
+            <h3>Results:</h3>
+            <ul>
+                <li>Converted idea into multi-million dollar revenue</li>
+                <li>Secured partnerships with major pharmaceutical companies</li>
+                <li>Led multiple funding rounds</li>
+                <li>Built high-performance teams</li>
+            </ul>
+        </div>
+        <p style="margin-top: 2rem; font-weight: 600;">
+            Knows both technical and commercial realities.
+        </p>
+    </div>
+
+    <!-- Slide 5: ACTG Framework -->
+    <div class="slide">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Four Elements of Biotech Success: <span style="color: var(--cytosine);">ACTG</span></h2>
+        <div class="actg-grid">
+            <div class="actg-card adenine">
+                <div class="actg-letter">A</div>
+                <h3>Attention</h3>
+                <p>Develop brands that attract talent and customers</p>
+            </div>
+            <div class="actg-card thymine">
+                <div class="actg-letter">T</div>
+                <h3>Trajectory</h3>
+                <p>Strategic direction and knowing when to pivot</p>
+            </div>
+            <div class="actg-card cytosine">
+                <div class="actg-letter">C</div>
+                <h3>Culture</h3>
+                <p>Build principles-led high-performance teams</p>
+            </div>
+            <div class="actg-card guanine">
+                <div class="actg-letter">G</div>
+                <h3>Gains</h3>
+                <p>Generating the commercial traction needed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Attention -->
+    <div class="slide bg-adenine">
+        <h2>A - Attention</h2>
+        <p><strong>Why It Matters:</strong></p>
+        <p>Your science is brilliant. But your company is unknown. You're competing against companies with worse technology but bigger budgets. Great articulation means nothing if no one's listening.</p>
+        <div style="margin-top: 2rem;">
+            <h3>How We Help:</h3>
+            <ul>
+                <li>Build founder and CEO brands with little marketing budget (proven: 10M+ impressions)</li>
+                <li>Convert recruitment from expensive to effortless</li>
+                <li>"Building in public" social frameworks that scale</li>
+                <li>Turn founder visibility into talent, customers, and investors</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 7: Trajectory -->
+    <div class="slide bg-thymine">
+        <h2>T - Trajectory</h2>
+        <p><strong>Why It Matters:</strong></p>
+        <p>Every founder faces moments where the path forward splits. Pivot or persevere. Raise now or extend runway. Hard decisions made in a fog, with incomplete information. Missing the signal could cost you everything.</p>
+        <div style="margin-top: 2rem;">
+            <h3>How We Help:</h3>
+            <ul>
+                <li>Recognize inflection points and market signals before they're obvious</li>
+                <li>Navigate strategic pivots without losing team or momentum</li>
+                <li>Know when to raise capital versus validate assumptions first</li>
+                <li>Make tough calls about product direction with confidence</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 8: Culture -->
+    <div class="slide bg-cytosine">
+        <h2>C - Culture</h2>
+        <p><strong>Why It Matters:</strong></p>
+        <p>Great science plus dysfunctional teams equals failure. Teams need to be aligned on a common target. Principles-based leadership aligns teams, reduces inconsistencies, drives hiring. Sets a high bar for performance.</p>
+        <div style="margin-top: 2rem;">
+            <h3>How We Help:</h3>
+            <ul>
+                <li>Develop company principles that drive engagement, recruitment, retention</li>
+                <li>Create principles-based leadership frameworks that scale</li>
+                <li>Build communication bridges between technical and commercial teams</li>
+                <li>Hire the best talent across scientific and business functions</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 9: Gains -->
+    <div class="slide bg-guanine">
+        <h2>G - Gains</h2>
+        <p><strong>Why It Matters:</strong></p>
+        <p>Everything else is theater until you have commercial validation. Pitch decks and technical milestones mean nothing without paying customers. Need revenue to prove product-market fit, fund growth, show execution.</p>
+        <div style="margin-top: 2rem;">
+            <h3>How We Help:</h3>
+            <ul>
+                <li>Develop go-to-market strategies that actually convert</li>
+                <li>Structure partnership deals that accelerate growth</li>
+                <li>Identify and close first revenue-generating customers systematically</li>
+                <li>Build revenue models that scale beyond services</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 10: Services -->
+    <div class="slide">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Three Ways We Work Together</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Technical & Strategic Advisory</h3>
+                <p>Navigate complex technical and commercial decisions. From synthetic biology strategy to pharmaceutical partnerships.</p>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--text-secondary);">For: Founders and executives facing critical decisions</p>
+            </div>
+            <div class="service-card">
+                <h3>Revenue Growth Roadmap</h3>
+                <p>Systematic approach to generating and scaling revenue. Navigate the journey from zero to £10M with proven methodologies.</p>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--text-secondary);">For: Pre-revenue to £10M scaling companies</p>
+            </div>
+            <div class="service-card">
+                <h3>CEO Coaching & Leadership</h3>
+                <p>Develop leadership skills to match company growth. Managing teams, board dynamics, fundraising, resilience.</p>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--text-secondary);">For: First-time and technical founders transitioning to CEO</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Results -->
+    <div class="slide">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Real Impact, Real Results</h2>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">10M+</div>
+                <div class="metric-label">Impressions with almost £0 marketing spend</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">40K+</div>
+                <div class="metric-label">LinkedIn Followers</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">£M+</div>
+                <div class="metric-label">Revenue Generated for Clients</div>
+            </div>
+        </div>
+        <div style="margin-top: 2rem; text-align: center;">
+            <ul style="display: inline-block; text-align: left;">
+                <li>Major pharmaceutical partnerships secured</li>
+                <li>Multiple funding rounds led successfully</li>
+                <li>High-performance teams built and scaled</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 12: Pricing -->
+    <div class="slide">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Clear, Straightforward Investment</h2>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h3>Hourly Consulting</h3>
+            <div class="price">£1,499</div>
+            <p>per hour • Flexible single sessions • 60-minute minimum</p>
+        </div>
+        <h3 style="text-align: center; margin: 2rem 0 1rem;">Package Rates (Save 10-20%)</h3>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="price">£6,745</div>
+                <p><strong>5 hours</strong></p>
+                <p style="text-decoration: line-through; color: var(--text-secondary);">£7,495</p>
+                <p style="color: var(--cytosine); font-weight: 600;">Save £750 (10%)</p>
+            </div>
+            <div class="pricing-card featured">
+                <div class="price">£12,741</div>
+                <p><strong>10 hours</strong></p>
+                <p style="text-decoration: line-through; color: var(--text-secondary);">£14,990</p>
+                <p style="color: var(--cytosine); font-weight: 600;">Save £2,249 (15%)</p>
+            </div>
+            <div class="pricing-card">
+                <div class="price">£23,984</div>
+                <p><strong>20 hours</strong></p>
+                <p style="text-decoration: line-through; color: var(--text-secondary);">£29,980</p>
+                <p style="color: var(--cytosine); font-weight: 600;">Save £5,996 (20%)</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+            Custom engagements available for board advisory and fractional executive roles
+        </p>
+    </div>
+
+    <!-- Slide 13: Who We Work With -->
+    <div class="slide bg-secondary" style="background: var(--bg-secondary);">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Ideal Clients</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <ul style="font-size: 1.125rem;">
+                <li>Early-stage biotech founders and CEOs</li>
+                <li>Technical founders transitioning to CEO roles</li>
+                <li>Companies at critical decision points</li>
+                <li>Pre-revenue to £10M scaling companies</li>
+                <li>Teams needing alignment and culture development</li>
+                <li>Founders seeking commercial traction</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 14: The Difference -->
+    <div class="slide">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Why The Synthesis?</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <div>
+                    <ul style="font-size: 1.125rem;">
+                        <li><strong>Real Experience:</strong> Actually built and scaled a biotech company</li>
+                        <li><strong>Technical + Commercial:</strong> Knows both sides of the equation</li>
+                        <li><strong>No Fluff:</strong> Practical guidance, not consultant speak</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul style="font-size: 1.125rem;">
+                        <li><strong>Proven Frameworks:</strong> ACTG methodology tested in real companies</li>
+                        <li><strong>Results-Driven:</strong> Focus on tangible gains and commercial traction</li>
+                        <li><strong>Founder-Focused:</strong> Understands unique biotech leadership challenges</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: CTA -->
+    <div class="slide slide-cta">
+        <h2>Let's Talk About Your Biotech</h2>
+        <p style="font-size: 1.25rem; margin-top: 2rem;">
+            All engagements begin with a <strong>complimentary 20-minute discovery call</strong>
+        </p>
+        <p style="font-size: 1.5rem; margin-top: 3rem; font-weight: 600;">
+            Ready to accelerate your path from bench to revenue?
+        </p>
+        <a href="mailto:steve@thesynthesis.co.uk" class="cta-button">Book Your Discovery Call</a>
+        <p style="margin-top: 2rem; opacity: 0.9;">
+            steve@thesynthesis.co.uk<br>
+            Cambridge, UK
+        </p>
+    </div>
+
+    <!-- Slide 16: Contact -->
+    <div class="slide" style="background: var(--bg-secondary);">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Contact & Resources</h2>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.125rem; margin-bottom: 1rem;">
+                <strong>Website:</strong> thesynthesis.co.uk
+            </p>
+            <p style="font-size: 1.125rem; margin-bottom: 1rem;">
+                <strong>Email:</strong> steve@thesynthesis.co.uk
+            </p>
+            <p style="font-size: 1.125rem; margin-bottom: 1rem;">
+                <strong>Location:</strong> Cambridge, UK
+            </p>
+            <p style="font-size: 1.125rem; margin-bottom: 1rem;">
+                <strong>Blog:</strong> The Latest Synthesis
+            </p>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: var(--text-secondary);">
+                © 2025 The Synthesis. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-button" onclick="window.scrollBy(0, -window.innerHeight)">↑ Previous</button>
+        <button class="nav-button" onclick="window.scrollBy(0, window.innerHeight)">↓ Next</button>
+    </div>
+
+    <script>
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                window.scrollBy(0, window.innerHeight);
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                window.scrollBy(0, -window.innerHeight);
+            }
+        });
+
+        // Smooth scroll to top on load
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
