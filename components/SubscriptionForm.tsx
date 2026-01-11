@@ -339,7 +339,7 @@ const SubscriptionForm = () => {
 
           <div>
             <label htmlFor="companyFocus" className="block text-sm font-semibold text-adenine mb-2">
-              2. What is your company's current primary focus? <span className="text-red-600">*</span>
+              2. What is your company&apos;s current primary focus? <span className="text-red-600">*</span>
             </label>
             <select
               id="companyFocus"
