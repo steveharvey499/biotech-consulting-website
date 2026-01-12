@@ -161,6 +161,35 @@ export const blogPosts: BlogPost[] = [
       <p>Choose carefully. Because in those first years, when your head is spinning and you're doing everything yourself, those principles might be the only thing keeping you from compromising your way into mediocrity.</p>
     `,
   },
+  {
+    id: "culture-scientist-to-ceo-podcast",
+    letter: "C",
+    title: "Culture: Bridging the Gap from Scientist to CEO with Principles-led Leadership",
+    excerpt: "In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition and the lessons technical founders face at the crossroads.",
+    date: "2023-11-09",
+    readTime: "28 min listen",
+    category: "Culture",
+    content: `
+      <p>In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition and the lessons technical founders face at the crossroads.</p>
+      
+      <p>Developing skills from laboratory to leadership is never going to be straightforward, but there are learnings to be taken from every mistake. I share candidly about my journey from scientist to CEO, including both my personal and professional motivations for founding the business, and give insight into the mindset that has helped the business to innovate, persevere and evolve despite multiple setbacks.</p>
+      
+      <div class="my-12" style="max-width: 100%;">
+        <iframe 
+          style="border-radius: 12px;" 
+          src="https://open.spotify.com/embed/episode/0joExgNo0IORkCMpEX2TXI?utm_source=generator&theme=0" 
+          width="100%" 
+          height="352" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+      
+      <p>You can listen to the full episode on <a href="https://open.spotify.com/episode/0joExgNo0IORkCMpEX2TXI?si=030e1f3093ec4ab3" target="_blank" rel="noopener noreferrer">Spotify</a> or find it on the <a href="https://www.peoplepuzzles.co.uk" target="_blank" rel="noopener noreferrer">People Puzzles podcast</a>.</p>
+    `,
+  },
 ];
 
 export const getBlogPostById = (id: string): BlogPost | undefined => {
