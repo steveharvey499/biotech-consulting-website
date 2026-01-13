@@ -21,6 +21,33 @@ export const getLetterColor = (letter: "A" | "C" | "T" | "G"): string => {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "decision-architecture-podcast",
+    letter: "T",
+    title: "The Decision Architecture: Pivoting Your Personal Path",
+    excerpt: "I talked to Mark Davison on The Big Experiment podcast about the pivotal points in my career.",
+    date: "2024-03-18",
+    readTime: "43 min listen",
+    category: "Culture",
+    content: `
+      <p>I talked to Mark Davison on The Big Experiment podcast about the pivotal points in my career.</p>
+      
+      <div class="my-12" style="max-width: 100%;">
+        <iframe 
+          style="border-radius: 12px;" 
+          src="https://open.spotify.com/embed/episode/72vscA6JApzYYzrwRKyCdO?utm_source=generator&theme=0" 
+          width="100%" 
+          height="352" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+      
+      <p>You can listen to the full episode on <a href="https://open.spotify.com/episode/72vscA6JApzYYzrwRKyCdO?si=a15f12a8c4af485b" target="_blank" rel="noopener noreferrer">Spotify</a> or find it on <a href="https://open.spotify.com/show/72vscA6JApzYYzrwRKyCdO" target="_blank" rel="noopener noreferrer">The Big Experiment podcast</a>.</p>
+    `,
+  },
+  {
     id: "amplification-brand-strategy",
     letter: "A",
     title: "The Brand Attention Strategy: 0 to 10M+ Impressions",
