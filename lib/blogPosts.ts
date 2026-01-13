@@ -164,7 +164,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "culture-scientist-to-ceo-podcast",
     letter: "C",
-    title: "Culture: Bridging the Gap from Scientist to CEO with Principles-led Leadership",
+    title: "Bridging the Gap from Scientist to CEO with Principles-led Leadership",
     excerpt: "In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition and the lessons technical founders face at the crossroads.",
     date: "2023-11-09",
     readTime: "28 min listen",
