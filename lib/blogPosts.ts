@@ -165,12 +165,12 @@ export const blogPosts: BlogPost[] = [
     id: "culture-scientist-to-ceo-podcast",
     letter: "C",
     title: "Bridging the Gap from Scientist to CEO with Principles-led Leadership",
-    excerpt: "In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition and the lessons technical founders face at the crossroads.",
+    excerpt: "In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition from the bench to business, and the lessons technical founders face at those crossroads.",
     date: "2023-11-09",
     readTime: "28 min listen",
     category: "Culture",
     content: `
-      <p>In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition and the lessons technical founders face at the crossroads.</p>
+      <p>In this podcast, I talk to Ally Maughan from People Puzzles. We look back at the transition from the bench to business, and the lessons technical founders face at those crossroads.</p>
       
       <p>Developing skills from laboratory to leadership is never going to be straightforward, but there are learnings to be taken from every mistake. I share candidly about my journey from scientist to CEO, including both my personal and professional motivations for founding the business, and give insight into the mindset that has helped the business to innovate, persevere and evolve despite multiple setbacks.</p>
       
