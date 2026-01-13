@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I talked to Mark Davison on The Big Experiment podcast about the pivotal points in my career.",
     date: "2024-03-18",
     readTime: "43 min listen",
-    category: "Culture",
+    category: "Trajectory",
     content: `
       <p>I talked to Mark Davison on The Big Experiment podcast about the pivotal points in my career.</p>
       
